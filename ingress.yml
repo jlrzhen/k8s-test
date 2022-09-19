@@ -14,11 +14,11 @@ spec:
           service:
             name: apple-service
             port: 
-              number: 5678
+              number: 80
       - path: /banana
         pathType: Prefix
         backend:
           service:
             name: banana-service
             port: 
-              number: 5678
+              number: 80
