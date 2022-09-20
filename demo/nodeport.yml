@@ -1,0 +1,74 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-deployment
+spec:
+  selector:
+    matchLabels:
+      app: metrics
+      department: sales
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app: metrics
+        department: sales
+    spec:
+      containers:
+      - name: nginx
+        image: nginx
+        resources:
+            requests:
+              memory: "64Mi"
+              cpu: "250m"
+            limits:
+              memory: "128Mi"
+              cpu: "500m"
+        env:
+        # Define the environment variable
+        - name: PLAYER_INITIAL_LIVES # Notice that the case is different here
+                                     # from the key name in the ConfigMap.
+          valueFrom:
+            configMapKeyRef:
+              name: game-demo           # The ConfigMap this value comes from.
+              key: player_initial_lives # The key to fetch.
+        - name: UI_PROPERTIES_FILE_NAME
+          valueFrom:
+            configMapKeyRef:
+              name: game-demo
+              key: ui_properties_file_name
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: my-cip-service
+spec:
+  type: NodePort
+  # Uncomment the below line to create a Headless Service
+  # clusterIP: None
+  selector:
+    app: metrics
+    department: sales
+  ports:
+    - port: 80
+      nodePort: 30000
+      name: http
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: game-demo
+data:
+  # property-like keys; each key maps to a simple value
+  player_initial_lives: "3"
+  ui_properties_file_name: "user-interface.properties"
+
+  # file-like keys
+  game.properties: |
+    enemy.types=aliens,monsters
+    player.maximum-lives=5    
+  user-interface.properties: |
+    color.good=purple
+    color.bad=yellow
+    allow.textmode=true   
