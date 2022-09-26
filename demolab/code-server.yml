@@ -2,21 +2,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: my-deployment
+  name: code-server-deployment
 spec:
   selector:
     matchLabels:
-      app: metrics
+      app: code-server
   replicas: 3
   template:
     metadata:
       labels:
-        app: metrics
-        department: sales
+        app: code-server
     spec:
       containers:
-      - name: heimdall
-        image: lscr.io/linuxserver/heimdall:latest
+      - name: code-server
+        image: lscr.io/linuxserver/code-server:latest
         resources:
             requests:
               memory: "64Mi"
@@ -28,13 +27,13 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: my-nodeport-service
+  name: code-server-service
 spec:
   type: NodePort
   # Uncomment the below line to create a Headless Service
   # clusterIP: None
   selector:
-    app: metrics
+    app: code-server
   ports:
     - port: 80
       nodePort: 30000
