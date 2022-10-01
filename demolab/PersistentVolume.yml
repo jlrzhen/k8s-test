@@ -29,7 +29,7 @@ metadata:
   labels:
     app: code-server
 spec:
-  storageClassName: ""
+  storageClassName: local-storage
   accessModes:
     - ReadWriteOnce
   resources:
