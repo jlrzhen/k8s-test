@@ -24,9 +24,9 @@ spec:
               memory: "128Mi"
               cpu: "500m"
         volumeMounts:
-      - name: config
-        mountPath: "/config"
-        readOnly: true
+        - name: config
+          mountPath: "/config"
+          readOnly: true
       volumes:
         # You set volumes at the Pod level, then mount them into containers inside that Pod
         - name: config
