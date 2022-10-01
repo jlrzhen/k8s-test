@@ -5,14 +5,14 @@ metadata:
   name: code-server-pv
 spec:
   capacity:
-    storage: 2Gi
+    storage: 4Gi
   volumeMode: Filesystem
   accessModes:
   - ReadWriteOnce
   persistentVolumeReclaimPolicy: Delete
   storageClassName: local-storage
   local:
-    path: /config/code-server
+    path: /mnt/external1
   nodeAffinity:
     required:
       nodeSelectorTerms:
