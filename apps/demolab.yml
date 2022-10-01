@@ -1,0 +1,14 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: demolab
+spec:
+  destination:
+    name: ''
+    namespace: default
+    server: 'https://kubernetes.default.svc'
+  source:
+    path: demolab
+    repoURL: 'https://github.com/jlrzhen/k8s-test'
+    targetRevision: HEAD
+  project: default
