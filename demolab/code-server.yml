@@ -25,7 +25,7 @@ spec:
               cpu: "500m"
         volumeMounts:
         - name: code-server
-          mountPath: /config/code-server
+          mountPath: /config
       volumes:
       - name: code-server
         persistentVolumeClaim:
