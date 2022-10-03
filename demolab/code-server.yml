@@ -24,8 +24,8 @@ spec:
               memory: "128Mi"
               cpu: "500m"
         volumeMounts:
-        - name: code-server-storage
-          mountPath: /config
+        - mountPath: "/config"
+          name: code-server-storage
       volumes:
       - name: code-server-storage
         persistentVolumeClaim:
