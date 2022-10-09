@@ -81,11 +81,13 @@ metadata:
   labels:
     app: nextcloud
 spec:
+  type: NodePort
   selector:
     pod-label: nextcloud-server-pod
   ports:
-  - protocol: TCP
-    port: 80
+    - port: 80
+      nodePort: 30002
+      name: http
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
