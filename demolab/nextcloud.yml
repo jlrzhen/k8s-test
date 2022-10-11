@@ -40,11 +40,13 @@ metadata:
   labels:
     app: nextcloud
 spec:
+  type: NodePort
   selector:
     pod-label: nextcloud-db-pod
   ports:
-  - protocol: TCP
-    port: 3306
+    - port: 3306
+      nodePort: 30003
+      name: http
 ---
 apiVersion: apps/v1
 kind: Deployment
