@@ -50,13 +50,6 @@ spec:
             limits:
               memory: "128Mi"
               cpu: "500m"
-        volumeMounts:
-        - mountPath: "/config"
-          name: code-server-storage
-      volumes:
-      - name: code-server-storage
-        persistentVolumeClaim:
-          claimName: code-server-claim
 ---
 apiVersion: v1
 kind: Service
