@@ -6,7 +6,7 @@ metadata:
   labels:
     type: local
 spec:
-  storageClassName: manual
+  storageClassName: code-server
   capacity:
     storage: 1Gi
   accessModes:
@@ -19,7 +19,7 @@ kind: PersistentVolumeClaim
 metadata:
   name: code-server-claim
 spec:
-  storageClassName: manual
+  storageClassName: code-server
   accessModes:
     - ReadWriteOnce
   resources:
